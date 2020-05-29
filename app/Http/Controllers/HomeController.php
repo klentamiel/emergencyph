@@ -25,11 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->user_type == 'user'){        
-            return view('home');
+        if (Auth::user()->user_type == 'admin'){        
+            return view('admin');
         }
-        if (Auth::user()->user_type == 'police'){        
+        elseif (Auth::user()->user_type == 'police'){        
             return view('police');
+        } else {
+            return view('home');
         }
     }
 }

@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register Police') }}</div>
+                <div class="card-header">{{ __('Register Station') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register.save') }}">
+                    <form method="POST" action="{{ route('register.station.save') }}">
                         @csrf
 
                         @if(session('success'))
@@ -42,6 +42,26 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="custom-select form-control @error('user_type') is-invalid @enderror" id="user_type" name="user_type">
+                                    <option value="">Select Type...</option>
+                                    <option value="police">Police Station</option>
+                                    <option value="hospital">Hospital</option>
+                                    <option value="fire_station">Fire Station</option>
+                                </select>
+
+                                @error('user_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                             </div>
                         </div>
 
