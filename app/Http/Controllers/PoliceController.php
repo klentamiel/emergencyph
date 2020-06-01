@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class PoliceController extends UserController
 {
     public function registerPolice() {
-        if (Auth::user()->user_type === 'police') {
+        if (Auth::user()->user_type === 'Police Station') {
             return view('user.register');
         } else {
             return redirect()->back();
@@ -32,7 +32,7 @@ class PoliceController extends UserController
 
             $user->name = $request['name'];
             $user->email = $request['email'];
-            $user->user_type = 'police_officer';
+            $user->user_type = 'Police Officer';
             $user->password = Hash::make($request['password']);
 
             $user->save();

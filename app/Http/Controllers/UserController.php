@@ -15,7 +15,7 @@ class UserController extends Controller
     }
 
     
-    public function edit()
+    public function editProfile()
     {
         if (Auth::user()) {
             $user = User::find(Auth::user()->id);
@@ -31,7 +31,7 @@ class UserController extends Controller
     }
 
     
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $user = User::find(Auth::user()->id);
 

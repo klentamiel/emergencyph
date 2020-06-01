@@ -11,7 +11,7 @@ class AdminController extends UserController
 {
     public function registerStation() {
         if (Auth::user()->user_type === 'admin') {
-            return view('user.adminregister');
+            return view('admin.register');
         } else {
             return redirect()->back();
         }    

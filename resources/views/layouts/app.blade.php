@@ -63,7 +63,7 @@
                                         {{ __('Change Password') }}
                                     </a>
 
-                                    @if (Auth::user()->user_type === 'police')
+                                    @if (Auth::user()->user_type === 'Police Station')
                                         <a class="dropdown-item" href="{{ route('register.police') }}" >           
                                             {{ __('Register Police') }}
                                         </a>
@@ -72,6 +72,10 @@
                                     @if (Auth::user()->user_type === 'admin')
                                         <a class="dropdown-item" href="{{ route('register.station') }}" >           
                                             {{ __('Register Station') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('users.index') }}" >           
+                                            {{ __('Management') }}
                                         </a>
                                     @endif
 
