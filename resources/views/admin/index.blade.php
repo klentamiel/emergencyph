@@ -26,8 +26,12 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->user_type }}</td> 
                                 <td>
-                                    <a href="{{ route('users.edit', $user->id) }}"><button type="button" class="btn btn-primary">Edit</button></a>
-                                    <a href="{{ route('users.destroy', $user->id) }}"><button type="button" class="btn btn-warning">Delete</button></a>
+                                    <a href="{{ route('users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>
+                                    <form action="{{ route('users.destroy', $user) }}" method="POST" class="float-left px-3">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>                                       
+                                    </form>
                                 </td>                                                               
                             </tr>
                         @endforeach
