@@ -24,10 +24,10 @@ class CreateUserProfilesTable extends Migration
             $table->date('birth_date');
             $table->string('birth_place');
             $table->string('id_type');
-            $table->integer('id_number');
+            $table->string('id_number');
             $table->date('id_expiration');
             $table->string('id_link');
-            $table->integer('contact_no');
+            $table->string('contact_no');
             $table->string('permanent_address');
             $table->string('pa_baranggay');
             $table->string('pa_city');

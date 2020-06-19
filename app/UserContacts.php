@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserProfile extends Model
+class UserContacts extends Model
 {
     //
-    protected $table = 'user_profiles';
+    protected $table = 'emergency_contacts';
     protected $primaryKey = 'id';
 }
