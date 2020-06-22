@@ -56,8 +56,28 @@ Route::post('/user/deletecontact',[
 ]);
 
 
-Route::post('/user/getuserdetails',[
-    'as' => 'userdetails.userdetails',
-    'uses' => 'Api\UserController@getuserdetails
+Route::get('/user/getprofile',[
+    'as' => 'getprofile.getprofile',
+    'uses' => 'Api\UserProfileController@getProfile',
+]);
+
+Route::post('/user/savepersonalprofile',[
+    'as' => 'savepersonalprofile.savepersonalprofile',
+    'uses' => 'Api\UserProfileController@savepersonalprofile',
+]);
+
+Route::post('/user/saveaddress',[
+    'as' => 'saveaddress.saveaddress',
+    'uses' => 'Api\UserProfileController@saveaddress',
+]);
+
+Route::post('/user/saveidentifications',[
+    'as' => 'saveidentifications.saveidentifications',
+    'uses' => 'Api\UserProfileController@saveidentifications',
+]);
+
+Route::post('/user/updateprofile',[
+    'as' => 'updateprofile.updateprofile',
+    'uses' => 'Api\UserProfileController@updateprofile
     ',
 ]);
