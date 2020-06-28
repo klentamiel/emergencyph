@@ -28,8 +28,8 @@ class HomeController extends Controller
         if (Auth::user()->user_type == 'admin'){        
             return view('admin');
         }
-        elseif (Auth::user()->user_type == 'police'){        
-            return view('Police Station');
+        elseif (Auth::user()->user_type == 'Police Station'){        
+            return view('police');
         } else {
             return view('home');
         }
