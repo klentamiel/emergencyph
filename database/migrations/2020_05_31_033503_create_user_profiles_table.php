@@ -19,6 +19,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->longtext('profile_pic')->nullable();
             $table->string('nationality')->nullable();
             $table->string('country')->nullable();
             $table->date('birth_date')->nullable();
@@ -26,7 +27,8 @@ class CreateUserProfilesTable extends Migration
             $table->string('id_type')->nullable();
             $table->string('id_number')->nullable();
             $table->date('id_expiration')->nullable();
-            $table->string('id_link')->nullable();
+            $table->longtext('id_front')->nullable();
+            $table->longtext('id_back')->nullable();
             $table->string('contact_no')->nullable();
             $table->string('permanent_address')->nullable();
             $table->string('pa_baranggay')->nullable();
@@ -40,7 +42,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('ca_state')->nullable();
             $table->integer('ca_zipcode')->nullable();
             $table->string('ca_province')->nullable();
-            $table->string('ca_same_pa');
+            $table->string('ca_same_pa')->default('yes');
             $table->timestamps();
         });
     }

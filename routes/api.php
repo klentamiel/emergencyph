@@ -71,13 +71,13 @@ Route::post('/user/saveaddress',[
     'uses' => 'Api\UserProfileController@saveaddress',
 ]);
 
+Route::post('/user/updateprofile',[
+    'as' => 'updateprofile.updateprofile',
+    'uses' => 'Api\UserProfileController@updateprofile',
+]);
+
 Route::post('/user/saveidentifications',[
     'as' => 'saveidentifications.saveidentifications',
     'uses' => 'Api\UserProfileController@saveidentifications',
 ]);
 
-Route::post('/user/updateprofile',[
-    'as' => 'updateprofile.updateprofile',
-    'uses' => 'Api\UserProfileController@updateprofile
-    ',
-]);
