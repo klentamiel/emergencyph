@@ -5,8 +5,21 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card" style="width: 95%;">
-                <div class="card-header text-center">STATIONS</div>    
-                
+                <div class="card-header text-center">STATIONS</div> 
+                <form action="{{ route('admin.search') }}" method="POST" role="search">
+                    {{ csrf_field() }}
+                    <div class="input-group col-5 mt-4 ml-4">
+                        <input type="text" class="form-control" name="q"
+                            placeholder="Search users"> <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                @if(isset($message))                                
+                    <p class='ml-5 px-2 mt-2'> {{ $message }} </p>    
+                @endif   
                 <div class="card-body">                    
                     <table class="table">
                         <thead>
@@ -18,8 +31,9 @@
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        @foreach($users as $user)
+                        <tbody>                            
+                        @if(isset($details))
+                        @foreach($details as $user)
                             <tr>                           
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->name }}</td>
@@ -35,6 +49,7 @@
                                 </td>                                                               
                             </tr>
                         @endforeach
+                        @endif
                         </tbody>
                     </table>
 

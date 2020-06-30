@@ -19,9 +19,27 @@ class UsersController extends UserController
     {
         $users = User::all();
         if (Auth::user()->user_type === 'admin') {
-            return view('admin.index')->with('users', $users);
+            return view('admin.index')->withDetails($users);
         } else {
             return redirect()->back();
+        }
+    }
+
+    public function search (Request $request)
+    {
+        $q = $request->input('q');
+        if($q != ""){       
+            $users = User::where('name','LIKE', '%' .$q. '%')
+                            ->orWhere('email', 'LIKE', '%' .$q. '%')
+                            ->get();
+            if(count($users) > 0){
+                return view('admin.index')->withDetails($users)->withQuery($q);
+            } else {
+                return view('admin.index')->withMessage("No users found!"); 
+            } 
+        } else {
+            $users = User::all();
+            return view('admin.index')->withDetails($users);
         }
     }
 

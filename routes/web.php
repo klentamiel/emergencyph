@@ -34,3 +34,5 @@ Route::get('/register/station', 'AdminController@registerStation')->name('regist
 Route::post('/register/station', 'AdminController@registerSave')->name('register.station.save');
 
 Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
+
+Route::post('/admin/users', 'Admin\UsersController@search')->name('admin.search');
