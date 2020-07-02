@@ -36,3 +36,9 @@ Route::post('/register/station', 'AdminController@registerSave')->name('register
 Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
 
 Route::post('/admin/users', 'Admin\UsersController@search')->name('admin.search');
+
+Route::get('/register/hospital', 'HospitalController@registerHospital')->name('register.hospital');
+Route::post('/register/hospital', 'HospitalController@registerSave')->name('register.hospital.save');
+
+Route::get('/register/firestation', 'FireController@registerFire')->name('register.fire');
+Route::post('/register/firestation', 'FireController@registerSave')->name('register.fire.save');

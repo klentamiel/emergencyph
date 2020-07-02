@@ -30,6 +30,12 @@ class HomeController extends Controller
         }
         elseif (Auth::user()->user_type == 'Police Station'){        
             return view('police');
+        } 
+        elseif (Auth::user()->user_type == 'Ambulance'){
+            return view('hospital');
+        } 
+        elseif (Auth::user()->user_type == 'Fireman' ){
+            return view('firestation');
         } else {
             return view('home');
         }
