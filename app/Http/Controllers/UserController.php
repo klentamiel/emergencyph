@@ -37,14 +37,28 @@ class UserController extends Controller
 
         if ($user) {
             $validate = null;
-            if (Auth::user()->email === $request['email']) {
+            if (Auth::user()->email === $request['email'] && Auth::user()->username === $request['username']) {
                 $validate = $request->validate([
                     'name' => ['required', 'min:5'],
+                    'username' => ['required', 'min:5'],  
                     'email' => ['required', 'email']  
+                ]);
+            } elseif (Auth::user()->email === $request['email']) {
+                $validate = $request->validate([
+                    'name' => ['required', 'min:5'],
+                    'username' => ['required', 'min:5', 'unique:users'],   
+                    'email' => ['required', 'email']  
+                ]);
+            } elseif (Auth::user()->username === $request['username']) {
+                $validate = $request->validate([
+                    'name' => ['required', 'min:5'],
+                    'username' => ['required', 'min:5'],   
+                    'email' => ['required', 'email', 'unique:users']   
                 ]);
             } else {
                 $validate = $request->validate([
                     'name' => ['required', 'min:5'],
+                    'username' => ['required', 'min:5', 'unique:users'],   
                     'email' => ['required', 'email', 'unique:users']   
                 ]);
             }
@@ -52,6 +66,7 @@ class UserController extends Controller
             if ($validate) {
                 $user->name = $request['name'];
                 $user->email = $request['email'];
+                $user->username = $request['username'];
 
                 $user->save();
 
