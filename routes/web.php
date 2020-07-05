@@ -27,12 +27,26 @@ Route::post('/edit/user', 'UserController@updateProfile')->name('user.update');
 Route::get('/change/password', 'UserController@passwordEdit')->name('password.edit');
 Route::post('/change/password', 'UserController@passwordUpdate')->name('password.update');
 
-Route::get('/register/police', 'PoliceController@registerPolice')->name('register.police');
-Route::post('/register/police', 'PoliceController@registerSave')->name('register.save');
+Route::get('/register/officer', 'PoliceController@registerOfficer')->name('register.officer');
+Route::post('/register/officer', 'PoliceController@registerSave')->name('register.officer.save');
+
+Route::get('/register/ambulance', 'HospitalController@registerAmbulance')->name('register.ambulance');
+Route::post('/register/ambulance', 'HospitalController@registerSave')->name('register.ambulance.save');
+
+Route::get('/register/fireman', 'FireController@registerFireman')->name('register.fireman');
+Route::post('/register/fireman', 'FireController@registerSave')->name('register.fireman.save');
 
 Route::get('/register/station', 'AdminController@registerStation')->name('register.station');
 Route::post('/register/station', 'AdminController@registerSave')->name('register.station.save');
 
 Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
-
 Route::post('/admin/users', 'Admin\UsersController@search')->name('admin.search');
+
+Route::resource('/police/officers', 'Police\UsersController', ['except' => ['show', 'create', 'store']]);
+Route::post('/police/officers', 'Police\UsersController@search')->name('police.search');
+
+Route::resource('/hospital/ambulances', 'Hospital\UsersController', ['except' => ['show', 'create', 'store']]);
+Route::post('/hospital/ambulances', 'Hospital\UsersController@search')->name('hospital.search');
+
+Route::resource('/fire/firemans', 'Fire\UsersController', ['except' => ['show', 'create', 'store']]);
+Route::post('/fire/firemans', 'Fire\UsersController@search')->name('fire.search');

@@ -8,7 +8,7 @@
                 <div class="card-header">Edit - {{ $user->name }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user) }}">
+                    <form method="POST" action="{{ route('ambulances.update', $user) }}">
                         @csrf
                         {{ method_field('PUT') }}
 
@@ -57,26 +57,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
-
-                            <div class="col-md-6">
-                                <select class="custom-select form-control @error('user_type') is-invalid @enderror" id="user_type" name="user_type">
-                                    <option value="{{ $user->user_type }}">{{ $user->user_type }}</option>
-                                    <option value="Police Station">Police Station</option>
-                                    <option value="Hospital">Hospital</option>
-                                    <option value="Fire Station">Fire Station</option>
-                                </select>
-
-                                @error('user_type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
                             </div>
                         </div>
 
