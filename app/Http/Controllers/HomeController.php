@@ -26,16 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->user_type == 'admin'){        
-            return view('admin');
+            return view('admin.index');
         }
         elseif (Auth::user()->user_type == 'Police Station'){        
-            return view('police');
+            return view('police.index');
         } 
-        elseif (Auth::user()->user_type == 'Ambulance'){
-            return view('hospital');
+        elseif (Auth::user()->user_type == 'Hospital'){
+            return view('hospital.index');
         } 
-        elseif (Auth::user()->user_type == 'Fireman' ){
-            return view('firestation');
+        elseif (Auth::user()->user_type == 'Fire Station' ){
+            return view('fire.index');
         } else {
             return view('home');
         }

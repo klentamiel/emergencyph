@@ -31,10 +31,10 @@ class UsersController extends UserController
         if($q != ""){       
             $users = User::where([
                             ['name','LIKE', '%' .$q. '%'],
-                            ['user_type', 'Fire Man'],
+                            ['user_type', 'Fireman'],
                         ])->orWhere([
                             ['email','LIKE', '%' .$q. '%'],
-                            ['user_type', 'Fire Man'],
+                            ['user_type', 'Fireman'],
                         ])->get();
 
             if(count($users) > 0){

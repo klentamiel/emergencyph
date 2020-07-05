@@ -101,24 +101,8 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}" >           
                                             {{ __('Management') }}
                                         </a>
-                                    @endif
-
-                                    @if (Auth::user()->user_type === 'Ambulance')
-                                        <a class="dropdown-item" href="{{ route('register.hospital') }}" >           
-                                            {{ __('Register Ambulance') }}
-                                        </a>
-                                    @endif
-
-                                    @if (Auth::user()->user_type === 'Fireman')
-                                        <a class="dropdown-item" href="{{ route('register.fire') }}" >           
-                                            {{ __('Register Fireman') }}
-                                        </a>
-                                    @endif
-
-
-                                    
-
-                                    
+                                    @endif                                  
+                                                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
