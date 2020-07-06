@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PoliceController extends UserController
+class HospitalController extends UserController
 {
-    public function registerOfficer() {
-        if (Auth::user()->user_type === 'Police Station') {
-            return view('police.register');
+    public function registerAmbulance() {
+        if (Auth::user()->user_type === 'Hospital') {
+            return view('hospital.register');
         } else {
             return redirect()->back();
         }    
@@ -34,7 +34,7 @@ class PoliceController extends UserController
             $user->name = $request['name'];
             $user->email = $request['email'];
             $user->username = $request['username'];
-            $user->user_type = 'Police Officer';
+            $user->user_type = 'Ambulance';
             $user->password = Hash::make($request['password']);
 
             $user->save();
@@ -42,7 +42,7 @@ class PoliceController extends UserController
             return redirect()->back();    
         } else {
             $request->session()->flash('error', 'There was an Error!');
-            return redirect()->route('officer.register');
+            return redirect()->route('ambulance.register');
         }
     }
 }

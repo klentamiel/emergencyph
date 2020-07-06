@@ -64,8 +64,32 @@
                                     </a>
 
                                     @if (Auth::user()->user_type === 'Police Station')
-                                        <a class="dropdown-item" href="{{ route('register.police') }}" >           
-                                            {{ __('Register Police') }}
+                                        <a class="dropdown-item" href="{{ route('register.officer') }}" >           
+                                            {{ __('Register Police Officer') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('officers.index') }}" >           
+                                            {{ __('Management') }}
+                                        </a>
+                                    @endif
+
+                                    @if (Auth::user()->user_type === 'Hospital')
+                                        <a class="dropdown-item" href="{{ route('register.ambulance') }}" >           
+                                            {{ __('Register Ambulance') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('ambulances.index') }}" >           
+                                            {{ __('Management') }}
+                                        </a>
+                                    @endif
+
+                                    @if (Auth::user()->user_type === 'Fire Station')
+                                        <a class="dropdown-item" href="{{ route('register.fireman') }}" >           
+                                            {{ __('Register Fireman') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('firemans.index') }}" >           
+                                            {{ __('Management') }}
                                         </a>
                                     @endif
 
@@ -77,9 +101,8 @@
                                         <a class="dropdown-item" href="{{ route('users.index') }}" >           
                                             {{ __('Management') }}
                                         </a>
-                                    @endif
-
-                                    
+                                    @endif                                  
+                                                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -5,7 +5,7 @@ var geocoder;
 function loadMap() {
 	var cavite = {lat: 14.2142, lng: 120.9687};
 	map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 8,
+		zoom: 14,
 		center: cavite
 	});
 

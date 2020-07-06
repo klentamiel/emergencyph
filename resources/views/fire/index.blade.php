@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
 <head>
-	<title>Access Google Maps API in PHP</title>
 	<script type="text/javascript" src="{{ asset('js/googlemap.js') }}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 	<style type="text/css">
 		.body {
-			height: 450px;
+			height: 500px;
 		}
 		#map {
 			width: 100%;
@@ -22,7 +20,7 @@
 </head>
 <body>
 	<div class="body">
-		<center><h1>Access Google Maps API in PHP</h1></center>
+		<center><h1>{{ Auth::user()->name }}</h1></center>
 		<?php
 			// require 'education.php';
 			// $edu = new education;
@@ -38,7 +36,6 @@
 	</div>
 </body>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key={{config('googlemap')['map_apikey']}}&callback=loadMap">
+  src="https://maps.googleapis.com/maps/api/js?key=&callback=loadMap">
 </script>
-
 @endsection
