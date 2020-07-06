@@ -29,13 +29,21 @@ class LoginController extends Controller
             $userdata = User::where('username', $request->username)->first();
 
             if($userdata){
-                $userdata->profile = UserProfile::where('user_id', $userdata->id)->first();
+                if($userdata->verified === 'yes'){
+                    $userdata->profile = UserProfile::where('user_id', $userdata->id)->first();
 
-                $result = [
-                    'error' => 0,
-                    'userdata' => $userdata,
-                    'message' => 'success'
-                ];
+                    $result = [
+                        'error' => 0,
+                        'userdata' => $userdata,
+                        'message' => 'success'
+                    ];
+                }else{
+                    $result = [
+                        'error' => 1,
+                        'message' => 'Your account is not yet verified'
+                    ];
+                }
+                
             }else{
                 $result = [
                     'error' => 1,

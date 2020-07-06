@@ -18,8 +18,10 @@ class CreateUserReportsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->json('location');
             $table->string('report_type');
+            $table->string('response_by')->nullable();
             $table->string('status');
             $table->string('message');
+            $table->longtext('picture')->nullable();
             $table->timestamps();
         });
     }

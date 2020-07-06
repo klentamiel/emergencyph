@@ -81,3 +81,13 @@ Route::post('/user/saveidentifications',[
     'uses' => 'Api\UserProfileController@saveidentifications',
 ]);
 
+Route::post('/report/savereport',[
+    'as' => 'savereport.savereport',
+    'uses' => 'Api\ReportController@savereport',
+]);
+
+Route::post('/report/updatereport',[
+    'as' => 'updatereport.updatereport',
+    'uses' => 'Api\ReportController@updatereport',
+]);
+
