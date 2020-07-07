@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Notification;
 
 class Notifications extends Controller
 {
@@ -46,7 +47,23 @@ class Notifications extends Controller
      */
     public function show($id)
     {
-        //
+        $details = Notification::find($request->id);
+        $res = $details;
+
+        if($res){
+            $result = [
+                'error' => 0,
+                'message' => 'success',
+                'data' => $res
+            ];
+        }else{
+            $result = [
+                'error' => 1,
+                'message' => "danger"
+            ];
+        }
+
+        return response()->json($result);
     }
 
     /**

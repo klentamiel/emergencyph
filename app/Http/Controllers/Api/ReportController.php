@@ -70,4 +70,24 @@ class ReportController extends Controller
 
         return response()->json($result);
     }
+
+    protected function getreportdetails(Request $request){
+        $reportDetails = UserReports::find($request->id);
+        $res = $reportDetails;
+
+        if($res){
+            $result = [
+                'error' => 0,
+                'message' => 'success',
+                'data' => $res
+            ];
+        }else{
+            $result = [
+                'error' => 1,
+                'message' => "danger"
+            ];
+        }
+
+        return response()->json($result);
+    }
 }

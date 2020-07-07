@@ -91,3 +91,15 @@ Route::post('/report/updatereport',[
     'uses' => 'Api\ReportController@updatereport',
 ]);
 
+Route::get('/report/getreportdetails',[
+    'as' => 'getreportdetails.getreportdetails',
+    'uses' => 'Api\ReportController@getreportdetails',
+]);
+
+Route::get('/notification/getnotificationdetails',[
+    'as' => 'getnotificationdetails.getnotificationdetails',
+    'uses' => 'Api\Notifications@show',
+]);
+
+
+
