@@ -11,9 +11,11 @@ class ReportController extends Controller
     protected function savereport(Request $request)
     {
         try {
+           /*  $src = $this->createImage($request->file); */
             $userdata = UserReports::create([
                 'user_id' => $request['user_id'],
                 'location' => $request['location'],
+                'picture' => $request['picture'],
                 'report_type' => $request['report_type'],
                 'message' => $request['message'],
                 'status' => $request['status'],
@@ -89,5 +91,22 @@ class ReportController extends Controller
         }
 
         return response()->json($result);
+    }
+
+
+    public function createImage($src)
+    {
+
+        $image      = $src;
+        $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+        $img = Image::make($image->getRealPath());
+        $img->resize(120, 120, function ($constraint) {
+            $constraint->aspectRatio();                 
+        });
+
+        $img->stream(); // <-- Key point
+
+        return Storage::disk('local')->put('images/1/smalls'.'/'.$fileName, $img, 'public');
     }
 }

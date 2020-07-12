@@ -28,6 +28,11 @@ Route::post('/login',[
     'uses' => 'Api\Auth\LoginController@login',
 ]);
 
+Route::post('/changepassword',[
+    'as' => 'changepassword.changepassword',
+    'uses' => 'Api\Auth\LoginController@changepassword',
+]);
+
 Route::get('/user/getcontacts',[
     'as' => 'getcontacts.getcontacts',
     'uses' => 'Api\ContactsController@index',
@@ -100,6 +105,12 @@ Route::get('/notification/getnotificationdetails',[
     'as' => 'getnotificationdetails.getnotificationdetails',
     'uses' => 'Api\Notifications@show',
 ]);
+
+Route::post('/fileUpload',[
+    'as' => 'fileUpload.fileUpload',
+    'uses' => 'Api\Fileupload@uploadFile',
+]);
+
 
 
 
