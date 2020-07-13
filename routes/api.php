@@ -28,6 +28,11 @@ Route::post('/login',[
     'uses' => 'Api\Auth\LoginController@login',
 ]);
 
+Route::post('/changepassword',[
+    'as' => 'changepassword.changepassword',
+    'uses' => 'Api\Auth\LoginController@changepassword',
+]);
+
 Route::get('/user/getcontacts',[
     'as' => 'getcontacts.getcontacts',
     'uses' => 'Api\ContactsController@index',
@@ -56,8 +61,56 @@ Route::post('/user/deletecontact',[
 ]);
 
 
-Route::post('/user/getuserdetails',[
-    'as' => 'userdetails.userdetails',
-    'uses' => 'Api\UserController@getuserdetails
-    ',
+Route::get('/user/getprofile',[
+    'as' => 'getprofile.getprofile',
+    'uses' => 'Api\UserProfileController@getProfile',
 ]);
+
+Route::post('/user/savepersonalprofile',[
+    'as' => 'savepersonalprofile.savepersonalprofile',
+    'uses' => 'Api\UserProfileController@savepersonalprofile',
+]);
+
+Route::post('/user/saveaddress',[
+    'as' => 'saveaddress.saveaddress',
+    'uses' => 'Api\UserProfileController@saveaddress',
+]);
+
+Route::post('/user/updateprofile',[
+    'as' => 'updateprofile.updateprofile',
+    'uses' => 'Api\UserProfileController@updateprofile',
+]);
+
+Route::post('/user/saveidentifications',[
+    'as' => 'saveidentifications.saveidentifications',
+    'uses' => 'Api\UserProfileController@saveidentifications',
+]);
+
+Route::post('/report/savereport',[
+    'as' => 'savereport.savereport',
+    'uses' => 'Api\ReportController@savereport',
+]);
+
+Route::post('/report/updatereport',[
+    'as' => 'updatereport.updatereport',
+    'uses' => 'Api\ReportController@updatereport',
+]);
+
+Route::get('/report/getreportdetails',[
+    'as' => 'getreportdetails.getreportdetails',
+    'uses' => 'Api\ReportController@getreportdetails',
+]);
+
+Route::get('/notification/getnotificationdetails',[
+    'as' => 'getnotificationdetails.getnotificationdetails',
+    'uses' => 'Api\Notifications@show',
+]);
+
+Route::post('/fileUpload',[
+    'as' => 'fileUpload.fileUpload',
+    'uses' => 'Api\Fileupload@uploadFile',
+]);
+
+
+
+
