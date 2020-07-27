@@ -11,6 +11,30 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDrmv4GqNndSAMWoHkgN0eZXKd0KxTFrwY",
+            authDomain: "sos-ph-6bbbb.firebaseapp.com",
+            databaseURL: "https://sos-ph-6bbbb.firebaseio.com",
+            projectId: "sos-ph-6bbbb",
+            storageBucket: "sos-ph-6bbbb.appspot.com",
+            messagingSenderId: "598502100694",
+            appId: "1:598502100694:web:6a741cbfa271eb641c4377",
+            measurementId: "G-SHHJY267Q1"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.database().ref('reports').on("child_added", function (snapshot){
+            var reportId = snapshot.val().report_id;
+
+            /* ajax here */
+            
+        });
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
