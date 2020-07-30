@@ -16,7 +16,7 @@ class CreateUserReportsTable extends Migration
         Schema::create('user_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->json('location');
+            $table->string('location');
             $table->string('report_type');
             $table->string('response_by')->nullable();
             $table->string('status');
