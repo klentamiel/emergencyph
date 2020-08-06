@@ -41,6 +41,9 @@ Route::post('/register/station', 'AdminController@registerSave')->name('register
 
 Route::resource('/admin/users', 'Admin\UsersController', ['except' => ['show', 'create', 'store']]);
 Route::post('/admin/users', 'Admin\UsersController@search')->name('admin.search');
+Route::get('/verify/users', 'Admin\UsersController@pendingVerifications')->name('admin.pending');
+Route::post('/verify/users', 'Admin\UsersController@allow')->name('admin.allow');
+Route::get('/verify/users/{user}/profile', 'Admin\UsersController@viewProfile')->name('admin.profile');
 
 Route::resource('/police/officers', 'Police\UsersController', ['except' => ['show', 'create', 'store']]);
 Route::post('/police/officers', 'Police\UsersController@search')->name('police.search');

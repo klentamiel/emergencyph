@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -27,13 +27,6 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
-        firebase.database().ref('reports').on("child_added", function (snapshot){
-            var reportId = snapshot.val().report_id;
-
-            /* ajax here */
-            
-        });
     </script>
 
     <!-- Fonts -->
@@ -124,6 +117,10 @@
 
                                         <a class="dropdown-item" href="{{ route('users.index') }}" >           
                                             {{ __('Management') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('admin.pending') }}" >           
+                                            {{ __('Verify Users') }}
                                         </a>
                                     @endif                                  
                                                                     

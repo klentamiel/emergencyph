@@ -24,7 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {        
         if (Auth::user()->user_type == 'admin'){        
             return view('admin.index');
         }
@@ -37,7 +37,7 @@ class HomeController extends Controller
         elseif (Auth::user()->user_type == 'Fire Station' ){
             return view('fire.index');
         } else {
-            return view('home');
+            return view('invalid');
         }
     }
 }

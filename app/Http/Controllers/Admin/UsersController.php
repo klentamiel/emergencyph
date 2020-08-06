@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class UsersController extends UserController
@@ -25,6 +26,36 @@ class UsersController extends UserController
         }
     }
 
+    public function pendingVerifications() {
+        $users = User::where([
+            ['verified', 'no'],
+            ['user_type', 'user'],
+        ])->get();
+        if (Auth::user()->user_type === 'admin') {
+            return view('admin.verify')->withDetails($users);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function viewProfile(User $user) {
+        if (Auth::user()->user_type === 'admin') {
+            $profile = DB::table('user_profiles')->where('user_id', $user->id)->get();
+            return view('admin.profile')->withProfile($profile);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function allow(Request $request) {
+        if (isset($_POST['allow'])){
+            $profile = DB::table('users')->where('id', $request['id'])->update(['verified' => 'yes']);
+        } else {
+            $profile = DB::table('users')->where('id', $request['id'])->update(['verified' => 'invalid']);
+        }
+        return redirect()->route('admin.pending');
+    }
+
     public function search (Request $request)
     {
         $q = $request->input('q');
@@ -33,7 +64,7 @@ class UsersController extends UserController
                             ->orWhere('email', 'LIKE', '%' .$q. '%')
                             ->get();
             if(count($users) > 0){
-                return view('admin.manage')->withDetails($users)->withQuery($q);
+                return view('admin.manage')->withDetails($users);
             } else {
                 return view('admin.manage')->withMessage("No users found!"); 
             } 

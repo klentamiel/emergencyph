@@ -17,7 +17,7 @@ class UserController extends Controller
     
     public function editProfile()
     {
-        if (Auth::user()) {
+        if (Auth::user()->user_type != 'user') {
             $user = User::find(Auth::user()->id);
 
             if ($user) {
@@ -82,7 +82,7 @@ class UserController extends Controller
 
 
     public function passwordEdit() {
-        if (Auth::user()) {
+        if (Auth::user()->user_type != 'user') {
             return view('user.password');
         } else {
             return redirect()->back();

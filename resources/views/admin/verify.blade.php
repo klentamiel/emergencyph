@@ -6,17 +6,6 @@
         <!-- <div class="col-md-8"> -->
             <div class="card" style="width: 95%;">
                 <div class="card-header text-center">USERS</div> 
-                <form action="{{ route('admin.search') }}" method="POST" role="search">
-                    {{ csrf_field() }}
-                    <div class="input-group col-5 mt-4 ml-4">
-                        <input type="text" class="form-control" name="q"
-                            placeholder="Search users"> <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">
-                                Search
-                            </button>
-                        </span>
-                    </div>
-                </form>
                 @if(isset($message))                                
                     <p class='ml-5 px-2 mt-2'> {{ $message }} </p>    
                 @endif   
@@ -25,7 +14,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">User Type</th>
                                 <th scope="col">Actions</th>
@@ -34,20 +23,30 @@
                         <tbody>                            
                         @if(isset($details))
                         @foreach($details as $user)
-                            <tr>                           
+                            <tr id="{{ $user->id }}">                           
                                 <th scope="row">{{ $user->id }}</th>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->user_type }}</td> 
                                 <td>
-                                    <a href="{{ route('users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST" class="float-left px-3">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>                                       
-                                    </form>
+                                    <a href="{{ route('admin.profile', $user) }}"><button onClick='{{ $user->username }}()' type="button" class="btn btn-primary float-left">View Profile</button></a>
                                 </td>                                                               
                             </tr>
+                            <script>
+                                function {{ $user->username }}() {
+                                    firebase.database().ref('View/' + '{{ $user->id }}').update({
+                                        viewing:1,                                            
+                                    });
+                                }                                               
+                                firebase.database().ref('View/' + '{{ $user->id }}' ).on("value", snapshot => {
+                                        var childData = snapshot.val();                                        
+                                        if (childData['viewing'] == '1'){
+                                            document.getElementById(childData['id']).style.backgroundColor = "lightgreen";
+                                        } else {
+                                        document.getElementById(childData['id']).style.backgroundColor = ""; 
+                                        }      
+                                });
+                            </script>
                         @endforeach
                         @endif
                         </tbody>
