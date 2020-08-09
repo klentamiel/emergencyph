@@ -19,7 +19,6 @@ class AdminController extends UserController
 
     public function registerSave(Request $request) {
         $validate = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'user_type' => ['required'],
@@ -30,7 +29,6 @@ class AdminController extends UserController
         if ($validate){
             $user = new User;
 
-            $user->name = $request['name'];
             $user->email = $request['email'];
             $user->username = $request['username'];
             $user->user_type = $request['user_type'];

@@ -20,7 +20,24 @@
 </head>
 <body>
 	<div class="body">
-		<center><h1>{{ Auth::user()->name }}</h1></center>
+		@if (Auth::user()->user_type == 'admin')
+			@php
+				$usertype = 'admin';
+			@endphp
+		@elseif (Auth::user()->user_type == 'Police Station')
+			@php
+				$usertype = 'police';
+			@endphp
+		@elseif (Auth::user()->user_type == 'Hospital')
+			@php
+				$usertype = 'hospital';
+			@endphp
+		@elseif (Auth::user()->user_type == 'Fire Station')
+			@php
+				$usertype = 'fire';
+			@endphp
+		@endif
+		<button onClick="{{ $usertype }}Map()">Reset Map</button>
 		<?php
 			// require 'education.php';
 			// $edu = new education;
@@ -36,6 +53,6 @@
 	</div>
 </body>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmVVEoSiwb_3ZGH6dslZA573hdhRl3xNc&callback=loadMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmVVEoSiwb_3ZGH6dslZA573hdhRl3xNc&callback={{ $usertype }}Map">
 </script>
 @endsection
